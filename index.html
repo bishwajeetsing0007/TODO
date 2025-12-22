@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do - AI Enhanced Task Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-tasks"></i>
+                <h1>To Do</h1>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-list="my-day">
+                    <i class="fas fa-sun"></i>
+                    <span>My Day</span>
+                    <span class="task-count">0</span>
+                </div>
+                <div class="nav-item" data-list="important">
+                    <i class="fas fa-star"></i>
+                    <span>Important</span>
+                    <span class="task-count">0</span>
+                </div>
+                <div class="nav-item" data-list="planned">
+                    <i class="fas fa-calendar"></i>
+                    <span>Planned</span>
+                    <span class="task-count">0</span>
+                </div>
+                <div class="nav-item" data-list="all">
+                    <i class="fas fa-infinity"></i>
+                    <span>All Tasks</span>
+                    <span class="task-count">0</span>
+                </div>
+                <div class="nav-item" data-list="completed">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Completed</span>
+                    <span class="task-count">0</span>
+                </div>
+            </nav>
+
+            <div class="ai-section">
+                <h3><i class="fas fa-robot"></i> AI Assistant</h3>
+                <button class="ai-btn" id="aiSuggestBtn">
+                    <i class="fas fa-lightbulb"></i> Get Suggestions
+                </button>
+                <button class="ai-btn" id="aiGenerateBtn">
+                    <i class="fas fa-magic"></i> Generate Tasks
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <div class="header-title">
+                    <i class="fas fa-sun"></i>
+                    <h2 id="listTitle">My Day</h2>
+                </div>
+                <div class="header-date" id="currentDate"></div>
+            </div>
+
+            <!-- Add Task Input -->
+            <div class="add-task-container">
+                <button class="add-task-btn" id="addTaskBtn">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <input type="text" id="taskInput" placeholder="Add a task" />
+                <button class="quick-add-btn" id="quickAddBtn">Add</button>
+            </div>
+
+            <!-- Task List -->
+            <div class="task-list" id="taskList">
+                <!-- Tasks will be dynamically added here -->
+            </div>
+
+            <!-- AI Chat Modal -->
+            <div class="modal" id="aiModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-robot"></i> AI Assistant</h3>
+                        <button class="close-btn" id="closeModal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="ai-input-section">
+                            <textarea id="aiPrompt" placeholder="Ask AI to help you with tasks... (e.g., 'Create a workout plan for next week' or 'Suggest tasks for learning JavaScript')"></textarea>
+                            <button class="ai-submit-btn" id="aiSubmitBtn">
+                                <i class="fas fa-paper-plane"></i> Send
+                            </button>
+                        </div>
+                        <div class="ai-response" id="aiResponse"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- API Key Setup Modal -->
+            <div class="modal" id="apiKeyModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-key"></i> Setup Gemini API Key</h3>
+                        <button class="close-btn" id="closeApiKeyModal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>To use AI features, you need a free Gemini API key:</p>
+                        <ol>
+                            <li>Visit <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a></li>
+                            <li>Click "Create API Key"</li>
+                            <li>Copy the key and paste it below</li>
+                        </ol>
+                        <input type="password" id="apiKeyInput" placeholder="Paste your Gemini API key here" />
+                        <button class="ai-submit-btn" id="saveApiKeyBtn">
+                            <i class="fas fa-save"></i> Save Key
+                        </button>
+                        <p class="api-note">Your API key is stored locally in your browser and never sent anywhere except to Google's Gemini API.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task Detail Sidebar -->
+            <aside class="task-detail" id="taskDetail">
+                <div class="detail-header">
+                    <button class="close-detail-btn" id="closeDetailBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="detail-content" id="detailContent">
+                    <!-- Task details will be shown here -->
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
